@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_19_154552) do
+ActiveRecord::Schema.define(version: 2020_12_20_201549) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,10 +18,23 @@ ActiveRecord::Schema.define(version: 2020_12_19_154552) do
   create_table "artists", force: :cascade do |t|
     t.string "name"
     t.string "genre"
-    t.string "location"
     t.string "photourl"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "dpa_id"
+    t.index ["dpa_id"], name: "index_artists_on_dpa_id"
   end
 
+  create_table "dpas", force: :cascade do |t|
+    t.string "description"
+    t.integer "hierarchy"
+    t.string "bg_url"
+    t.bigint "dpa_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["dpa_id"], name: "index_dpas_on_dpa_id"
+  end
+
+  add_foreign_key "artists", "dpas"
+  add_foreign_key "dpas", "dpas"
 end

@@ -1,0 +1,37 @@
+<%= form_with(model: dpa, local: true) do |form| %>
+  <% if dpa.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(dpa.errors.count, "error") %> prohibited this dpa from being saved:</h2>
+
+      <ul>
+        <% dpa.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_field :description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :hierarchy %>
+    <%= form.text_field :hierarchy %>
+  </div>
+
+  <div class="field">
+    <%= form.label :bg_url %>
+    <%= form.text_field :bg_url %>
+  </div>
+
+  <div class="field">
+    <%= form.label :dpa_id %>
+    <%= form.text_field :dpa_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

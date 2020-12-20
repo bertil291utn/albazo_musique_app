@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Dpas</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Description</th>
+      <th>Hierarchy</th>
+      <th>Bg url</th>
+      <th>Dpa</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @dpas.each do |dpa| %>
+      <tr>
+        <td><%= dpa.description %></td>
+        <td><%= dpa.hierarchy %></td>
+        <td><%= dpa.bg_url %></td>
+        <td><%= dpa.dpa_id %></td>
+        <td><%= link_to 'Show', dpa %></td>
+        <td><%= link_to 'Edit', edit_dpa_path(dpa) %></td>
+        <td><%= link_to 'Destroy', dpa, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Dpa', new_dpa_path %>
