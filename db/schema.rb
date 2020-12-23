@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_23_204912) do
+ActiveRecord::Schema.define(version: 2020_12_23_230224) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 2020_12_23_204912) do
     t.string "spotify_track_id"
     t.string "track_url"
     t.integer "priority"
-    t.string "abum_bg_url"
+    t.string "album_bg_url"
     t.bigint "artist_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
