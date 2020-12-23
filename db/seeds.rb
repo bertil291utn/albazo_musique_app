@@ -7,9 +7,11 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require "faker"
 
+ArtistGenre.delete_all
+Track.delete_all
+Artist.delete_all
 Dpa.delete_all
 Genre.delete_all
-Track.delete_all
 
 dpa1 = Dpa.create! description: "pichincha", hierarchy: 1
 dpa2 = Dpa.create! description: "guayas", hierarchy: 1
@@ -28,47 +30,48 @@ params = [
   {
     name: Faker::Music.band,
     photourl: Faker::Avatar.image,
-    dpa_id: Dpa.where(hierarchy: 2).first,
+    dpa: Dpa.where(hierarchy: 2).first,
     tracks_attributes: [
       {
         name: Faker::Music::Phish.song,
         spotify_track_id: tracks_id.sample,
         track_url: "https://",
-        priority: rand(1..5) * 1000,
-        album_bg_url: Faker::LoremFlickr.image,
+        priority: rand(1..5),
+        abum_bg_url: Faker::LoremFlickr.image,
       },
       {
         name: Faker::Music::Phish.song,
         spotify_track_id: tracks_id.sample,
         track_url: "https://",
-        priority: rand(1..5) * 1000,
-        album_bg_url: Faker::LoremFlickr.image,
+        priority: rand(1..5),
+        abum_bg_url: Faker::LoremFlickr.image,
       },
     ],
   },
   {
     name: Faker::Music.band,
     photourl: Faker::Avatar.image,
-    dpa_id: Dpa.where(hierarchy: 2).first,
+    dpa: Dpa.where(hierarchy: 2).last,
     tracks_attributes: [
       {
         name: Faker::Music::Phish.song,
         spotify_track_id: tracks_id.sample,
         track_url: "https://",
-        priority: rand(1..5) * 1000,
-        album_bg_url: Faker::LoremFlickr.image,
+        priority: rand(1..5),
+        abum_bg_url: Faker::LoremFlickr.image,
       },
       {
         name: Faker::Music::Phish.song,
         spotify_track_id: tracks_id.sample,
         track_url: "https://",
-        priority: rand(1..5) * 1000,
-        album_bg_url: Faker::LoremFlickr.image,
+        priority: rand(1..5),
+        abum_bg_url: Faker::LoremFlickr.image,
       },
     ],
   },
 ]
 
 params.each do |elem|
-  Artist.create elem
+  artist = Artist.create! elem
+  artist.artist_genres.create! genre: [Genre.first, Genre.last].sample
 end
