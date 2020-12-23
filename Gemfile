@@ -33,6 +33,12 @@ group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
 end
 
+group :test do
+  # gem 'database_cleaner'
+  # gem 'factory_bot_rails', '~> 4.0'
+  gem 'faker'
+  # gem 'shoulda-matchers', '~> 3.1'
+end
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'web-console', '>= 4.0.3'
