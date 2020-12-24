@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :networks
   resources :tracks
   resources :genres
   resources :dpas
