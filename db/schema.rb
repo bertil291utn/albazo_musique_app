@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_23_230224) do
+ActiveRecord::Schema.define(version: 2020_12_24_145209) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,17 @@ ActiveRecord::Schema.define(version: 2020_12_23_230224) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["artist_id"], name: "index_artist_genres_on_artist_id"
     t.index ["genre_id"], name: "index_artist_genres_on_genre_id"
+  end
+
+  create_table "artist_networks", force: :cascade do |t|
+    t.string "social_link"
+    t.string "user_name"
+    t.bigint "artist_id", null: false
+    t.bigint "network_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["artist_id"], name: "index_artist_networks_on_artist_id"
+    t.index ["network_id"], name: "index_artist_networks_on_network_id"
   end
 
   create_table "artists", force: :cascade do |t|
@@ -50,6 +61,13 @@ ActiveRecord::Schema.define(version: 2020_12_23_230224) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "networks", force: :cascade do |t|
+    t.string "name"
+    t.string "icon_url"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "tracks", force: :cascade do |t|
     t.string "name"
     t.string "spotify_track_id"
@@ -64,6 +82,8 @@ ActiveRecord::Schema.define(version: 2020_12_23_230224) do
 
   add_foreign_key "artist_genres", "artists"
   add_foreign_key "artist_genres", "genres"
+  add_foreign_key "artist_networks", "artists"
+  add_foreign_key "artist_networks", "networks"
   add_foreign_key "artists", "dpas"
   add_foreign_key "dpas", "dpas"
   add_foreign_key "tracks", "artists"

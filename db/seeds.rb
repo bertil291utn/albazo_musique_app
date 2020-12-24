@@ -7,12 +7,16 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require "faker"
 
+# Delete all records
 ArtistGenre.delete_all
+ArtistNetwork.delete_all
 Track.delete_all
 Artist.delete_all
 Dpa.delete_all
 Genre.delete_all
+Network.delete_all
 
+# DIVISION POLITICO ADMINSITRATIVA (location)
 dpa1 = Dpa.create! description: "pichincha", hierarchy: 1
 dpa2 = Dpa.create! description: "guayas", hierarchy: 1
 Dpa.create! description: "cayambe", hierarchy: 2, bg_url: Faker::LoremFlickr.image, dpa_id: dpa1.id
@@ -20,9 +24,46 @@ Dpa.create! description: "quito", hierarchy: 2, bg_url: Faker::LoremFlickr.image
 Dpa.create! description: "guayaquil", hierarchy: 2, bg_url: Faker::LoremFlickr.image, dpa_id: dpa2.id
 Dpa.create! description: "duran", hierarchy: 2, bg_url: Faker::LoremFlickr.image, dpa_id: dpa2.id
 
+# GENRES
 genres = %w[rock pop jazz hip blues classic folk heavy_metal]
 genres.each do |elem|
   Genre.create! name: elem, bg_url: Faker::LoremFlickr.image
+end
+
+# NETWORK
+networks = [
+  {
+    name: "facebook",
+    url: "https://img.icons8.com/doodle/50/000000/facebook-new.png",
+  },
+  {
+    name: "instagram",
+    url: "https://img.icons8.com/doodle/50/000000/instagram-new.png",
+  },
+  {
+    name: "spotify",
+    url: "https://img.icons8.com/doodle/48/000000/spotify.png",
+  },
+  {
+    name: "soundcloud",
+    url: "https://img.icons8.com/doodle/50/000000/soundcloud.png",
+  },
+  {
+    name: "youtube",
+    url: "https://img.icons8.com/doodle/50/000000/youtube.png",
+  },
+  {
+    name: "deezer",
+    url: "https://img.icons8.com/color/48/000000/deezer.png",
+  },
+  {
+    name: "apple",
+    url: "https://img.icons8.com/doodle/48/000000/apple-music.png",
+  },
+]
+
+networks.each do |elem|
+  Network.create! name: elem[:name], icon_url: elem[:url]
 end
 
 tracks_id = %w[5Dqik1P9toCJTLj5rEm78s 5LYJ631w9ps5h9tdvac7yP 2Ch7LmS7r2Gy2kc64wv3Bz 0NdTUS4UiNYCNn5FgVqKQY]
@@ -74,4 +115,7 @@ params = [
 params.each do |elem|
   artist = Artist.create! elem
   artist.artist_genres.create! genre: [Genre.first, Genre.last].sample
+  2.times.each do
+    artist.artist_networks.create! network: Network.all.sample
+  end
 end
