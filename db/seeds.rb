@@ -114,8 +114,13 @@ params = [
 
 params.each do |elem|
   artist = Artist.create! elem
-  artist.artist_genres.create! genre: [Genre.first, Genre.last].sample
-  2.times.each do
-    artist.artist_networks.create! network: Network.all.sample
+  genreTable = Genre.all.to_a
+  networkTable = Network.all.to_a
+  rand(1..3).times do
+    artist.artist_genres.create! genre: genreTable.shuffle!.pop
+  end
+
+  rand(2..4).times do
+    artist.artist_networks.create! network: networkTable.shuffle!.pop
   end
 end
