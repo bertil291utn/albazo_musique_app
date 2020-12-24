@@ -76,14 +76,14 @@ params = [
       {
         name: Faker::Music::Phish.song,
         spotify_track_id: tracks_id.sample,
-        track_url: "https://",
+        track_url: "https://music-cdn.icons8.com/preview_low/344/9e1b7beb-dd8d-4a99-bde4-6b6e7351ac4f.mp3",
         priority: rand(1..5),
         album_bg_url: Faker::LoremFlickr.image,
       },
       {
         name: Faker::Music::Phish.song,
         spotify_track_id: tracks_id.sample,
-        track_url: "https://",
+        track_url: "https://music-cdn.icons8.com/preview_low/344/9e1b7beb-dd8d-4a99-bde4-6b6e7351ac4f.mp3",
         priority: rand(1..5),
         album_bg_url: Faker::LoremFlickr.image,
       },
@@ -97,14 +97,14 @@ params = [
       {
         name: Faker::Music::Phish.song,
         spotify_track_id: tracks_id.sample,
-        track_url: "https://",
+        track_url: "https://music-cdn.icons8.com/preview_low/344/9e1b7beb-dd8d-4a99-bde4-6b6e7351ac4f.mp3",
         priority: rand(1..5),
         album_bg_url: Faker::LoremFlickr.image,
       },
       {
         name: Faker::Music::Phish.song,
         spotify_track_id: tracks_id.sample,
-        track_url: "https://",
+        track_url: "https://music-cdn.icons8.com/preview_low/344/9e1b7beb-dd8d-4a99-bde4-6b6e7351ac4f.mp3",
         priority: rand(1..5),
         album_bg_url: Faker::LoremFlickr.image,
       },
