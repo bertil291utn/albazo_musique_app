@@ -1,9 +1,11 @@
 <div>
+  <h3>Artists</h3>
   <% @artists.each do |artist| %>
-    <%= image_tag artist.tracks[0].album_bg_url, size:'150' %>
     <p><%= artist.name%></p>
+    <%= image_tag artist.tracks[0].album_bg_url, size:'150' %>
   <% end %>
 </div>
+<a href="#">Ver mas</a>
 <%
 =begin%>
 <p id="notice"><%= notice %></p>

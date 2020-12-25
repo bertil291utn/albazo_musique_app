@@ -1,7 +1,18 @@
+<div>
+  <h3>Genres</h3>
+  <% @genres.each do |genre| %>
+    <%= link_to artists_path do %>
+      <div class="genre-element">
+        <p><%= genre.name %></p>
+        <%= image_tag genre.bg_url, size:'75' %>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+<%
+=begin  %>
 <p id="notice"><%= notice %></p>
-
 <h1>Genres</h1>
-
 <table>
   <thead>
     <tr>
@@ -10,7 +21,6 @@
       <th colspan="3"></th>
     </tr>
   </thead>
-
   <tbody>
     <% @genres.each do |genre| %>
       <tr>
@@ -23,7 +33,7 @@
     <% end %>
   </tbody>
 </table>
-
 <br>
-
 <%= link_to 'New Genre', new_genre_path %>
+<%
+=end%>
