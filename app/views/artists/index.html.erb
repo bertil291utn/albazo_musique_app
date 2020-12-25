@@ -1,7 +1,13 @@
+<div>
+  <% @artists.each do |artist| %>
+    <%= image_tag artist.tracks[0].album_bg_url, size:'150' %>
+    <p><%= artist.name%></p>
+  <% end %>
+</div>
+<%
+=begin%>
 <p id="notice"><%= notice %></p>
-
 <h1>Artists</h1>
-
 <table>
   <thead>
     <tr>
@@ -12,7 +18,6 @@
       <th colspan="3"></th>
     </tr>
   </thead>
-
   <tbody>
     <% @artists.each do |artist| %>
       <tr>
@@ -27,7 +32,7 @@
     <% end %>
   </tbody>
 </table>
-
 <br>
-
 <%= link_to 'New Artist', new_artist_path %>
+<%
+=end%>
