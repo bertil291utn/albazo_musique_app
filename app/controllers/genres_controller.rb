@@ -28,7 +28,7 @@ class GenresController < ApplicationController
 
     respond_to do |format|
       if @genre.save
-        format.html { redirect_to @genre, notice: 'Genre was successfully created.' }
+        format.html { redirect_to @genre, notice: "Genre was successfully created." }
         format.json { render :show, status: :created, location: @genre }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class GenresController < ApplicationController
   def update
     respond_to do |format|
       if @genre.update(genre_params)
-        format.html { redirect_to @genre, notice: 'Genre was successfully updated.' }
+        format.html { redirect_to @genre, notice: "Genre was successfully updated." }
         format.json { render :show, status: :ok, location: @genre }
       else
         format.html { render :edit }
@@ -56,19 +56,25 @@ class GenresController < ApplicationController
   def destroy
     @genre.destroy
     respond_to do |format|
-      format.html { redirect_to genres_url, notice: 'Genre was successfully destroyed.' }
+      format.html { redirect_to genres_url, notice: "Genre was successfully destroyed." }
       format.json { head :no_content }
     end
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_genre
-      @genre = Genre.find(params[:id])
-    end
+  def genero_artistas
+    session[:generos] = params[:generos]
+    redirect_to artists_path
+  end
 
-    # Only allow a list of trusted parameters through.
-    def genre_params
-      params.require(:genre).permit(:name, :bg_url)
-    end
+  private
+
+  # Use callbacks to share common setup or constraints between actions.
+  def set_genre
+    @genre = Genre.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def genre_params
+    params.require(:genre).permit(:name, :bg_url)
+  end
 end

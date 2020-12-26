@@ -1,13 +1,15 @@
 <div>
   <h3>Genres</h3>
-  <% @genres.each do |genre| %>
-    <%= link_to artists_path do %>
+  <%= form_with url: genero_artistas_path do |f| %>
+    <% @genres.each do |genre| %>
       <div class="genre-element">
         <p><%= genre.name %></p>
         <%= image_tag genre.bg_url, size:'75' %>
       </div>
-    <% end %>
-  <% end %>
+      <%= f.check_box :generos, {multiple: true}, genre.id, nil  %>
+    <% end %><br>
+    <%= f.submit "Seleccionar" %>
+  <%end%>
 </div>
 <%
 =begin  %>
