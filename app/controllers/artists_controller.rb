@@ -4,7 +4,10 @@ class ArtistsController < ApplicationController
   # GET /artists
   # GET /artists.json
   def index
-    @artists = Artist.includes :tracks
+    @artists = Genre.includes(:artists).find(session[:generos]).map(&:artists).flatten
+    # from a given genres array (DB, session) find all genres and dsiplay all artists from those genres
+    # Add flatten at the end to break two dimnensions array
+    #  = Artist.includes :tracks
   end
 
   # GET /artists/1
