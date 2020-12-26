@@ -14,6 +14,7 @@ class ArtistsController < ApplicationController
   # GET /artists/1.json
   def show
     # @tracks = @artist.tracks
+    @artist_networks = @artist.artist_networks.includes(:network)
   end
 
   # GET /artists/new
