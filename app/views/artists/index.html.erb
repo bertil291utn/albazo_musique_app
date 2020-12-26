@@ -1,11 +1,8 @@
 <div>
   <h3>Artists</h3>
-  <%= session[:generos].each do |elem| %>
-    <p><%= elem %></p>
-  <% end %>
   <% @artists.each do |artist| %>
     <p><%= artist.name%></p>
-    <%= image_tag artist.tracks[0].album_bg_url, size:'150' %>
+    <%= image_tag artist.photourl, size:'150' %>
   <% end %>
 </div>
 <a href="#">Ver mas</a>
