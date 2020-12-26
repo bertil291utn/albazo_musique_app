@@ -62,7 +62,7 @@ class GenresController < ApplicationController
   end
 
   def genero_artistas
-    session[:generos] = params[:generos]
+    session[:generos] = params[:generos].map(&:to_i)
     redirect_to artists_path
   end
 
