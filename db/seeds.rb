@@ -121,6 +121,6 @@ params.each do |elem|
   end
 
   rand(2..4).times do
-    artist.artist_networks.create! network: networkTable.shuffle!.pop
+    artist.artist_networks.create! social_link: "https://www.facebook.com/", user_name: Faker::Internet.user_name, network: networkTable.shuffle!.pop
   end
 end
