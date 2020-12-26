@@ -1,6 +1,12 @@
 <p id="notice"><%= notice %></p>
 <h3><%= @artist.name %></h3>
 <%= image_tag @artist.photourl, size:'150' %>
+<%@artist_networks.each do |elem|  %>
+  <%= link_to elem.social_link, target: :_blank do %>
+    <%= image_tag elem.network.icon_url, size:'50'  %>
+  <% end %>
+  <p><%= elem.network.name %></p>
+<% end %>
 <h5>Tracks</h5>
 <%@tracks.each do |track|  %>
   <span><%= track.priority %></span>

@@ -1,8 +1,8 @@
 <div>
   <h3>Artists</h3>
   <% @artists.each do |artist| %>
+    <p><%= artist.name%></p>
     <%= link_to artist_tracks_path artist do %>
-      <p><%= artist.name%></p>
       <%= image_tag artist.photourl, size:'150' %>
     <% end %>
   <% end %>
