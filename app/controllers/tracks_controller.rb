@@ -1,11 +1,11 @@
 class TracksController < ApplicationController
   before_action :set_track, only: [:show, :edit, :update, :destroy]
+  before_action :set_artist
 
   # GET /tracks
   # GET /tracks.json
   def index
-    @artist = Artist.find(params[:artist_id])
-    @artist_networks = @artist.artist_networks.includes(:network)
+    # @artist_networks = @artist.artist_networks.includes(:network)
     @tracks = @artist.tracks
   end
 
@@ -16,7 +16,7 @@ class TracksController < ApplicationController
 
   # GET /tracks/new
   def new
-    @track = Track.new
+    @track = @artist.tracks.new
   end
 
   # GET /tracks/1/edit
@@ -68,6 +68,10 @@ class TracksController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_track
     @track = Track.find(params[:id])
+  end
+
+  def set_artist
+    @artist = Artist.find(params[:artist_id])
   end
 
   # Only allow a list of trusted parameters through.

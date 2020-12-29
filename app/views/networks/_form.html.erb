@@ -2,7 +2,6 @@
   <% if network.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(network.errors.count, "error") %> prohibited this network from being saved:</h2>
-
       <ul>
         <% network.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -10,17 +9,14 @@
       </ul>
     </div>
   <% end %>
-
   <div class="field">
     <%= form.label :name %>
     <%= form.text_field :name %>
   </div>
-
   <div class="field">
     <%= form.label :icon_url %>
     <%= form.text_field :icon_url %>
   </div>
-
   <div class="actions">
     <%= form.submit %>
   </div>
