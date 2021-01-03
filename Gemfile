@@ -41,6 +41,7 @@ group :test do
 end
 group :development do
   gem 'bullet', '6.1.2'
+  gem 'rails-erd'
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'web-console', '>= 4.0.3'
   # Display performance information such as SQL time and flame graphs for each request in your browser.
