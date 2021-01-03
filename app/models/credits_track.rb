@@ -1,4 +1,4 @@
-class CreditsArtist < ApplicationRecord
+class CreditsTrack < ApplicationRecord
   belongs_to :rol
   belongs_to :track
   belongs_to :artist
