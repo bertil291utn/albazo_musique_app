@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Rols</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @rols.each do |rol| %>
+      <tr>
+        <td><%= rol.name %></td>
+        <td><%= link_to 'Show', rol %></td>
+        <td><%= link_to 'Edit', edit_rol_path(rol) %></td>
+        <td><%= link_to 'Destroy', rol, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Rol', new_rol_path %>
