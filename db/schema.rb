@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_03_194245) do
+ActiveRecord::Schema.define(version: 2021_01_03_194618) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,17 @@ ActiveRecord::Schema.define(version: 2021_01_03_194245) do
     t.bigint "dpa_id"
     t.string "spotify_artist_id"
     t.index ["dpa_id"], name: "index_artists_on_dpa_id"
+  end
+
+  create_table "credits_artists", force: :cascade do |t|
+    t.bigint "rol_id", null: false
+    t.bigint "track_id", null: false
+    t.bigint "artist_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["artist_id"], name: "index_credits_artists_on_artist_id"
+    t.index ["rol_id"], name: "index_credits_artists_on_rol_id"
+    t.index ["track_id"], name: "index_credits_artists_on_track_id"
   end
 
   create_table "dpas", force: :cascade do |t|
@@ -94,6 +105,9 @@ ActiveRecord::Schema.define(version: 2021_01_03_194245) do
   add_foreign_key "artist_networks", "artists"
   add_foreign_key "artist_networks", "networks"
   add_foreign_key "artists", "dpas"
+  add_foreign_key "credits_artists", "artists"
+  add_foreign_key "credits_artists", "rols"
+  add_foreign_key "credits_artists", "tracks"
   add_foreign_key "dpas", "dpas"
   add_foreign_key "tracks", "artists"
   add_foreign_key "tracks", "dpas"
