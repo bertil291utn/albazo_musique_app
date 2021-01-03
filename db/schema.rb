@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_03_165135) do
+ActiveRecord::Schema.define(version: 2021_01_03_173833) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,7 +71,6 @@ ActiveRecord::Schema.define(version: 2021_01_03_165135) do
 
   create_table "tracks", force: :cascade do |t|
     t.string "name"
-    t.string "spotify_track_id"
     t.string "track_url"
     t.integer "priority"
     t.string "album_bg_url"
