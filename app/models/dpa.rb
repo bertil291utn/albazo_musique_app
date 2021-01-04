@@ -3,4 +3,5 @@ class Dpa < ApplicationRecord
   has_many :artists
   has_many :tracks
 
+  scope :ordered, -> { order(description: :asc) }
 end
