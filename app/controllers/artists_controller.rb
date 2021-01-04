@@ -20,6 +20,7 @@ class ArtistsController < ApplicationController
   # GET /artists/new
   def new
     @artist = Artist.new
+    @genres = Genre.all
   end
 
   # GET /artists/1/edit

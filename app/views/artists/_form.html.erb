@@ -2,7 +2,6 @@
   <% if artist.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(artist.errors.count, "error") %> prohibited this artist from being saved:</h2>
-
       <ul>
         <% artist.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -10,27 +9,26 @@
       </ul>
     </div>
   <% end %>
-
   <div class="field">
     <%= form.label :name %>
     <%= form.text_field :name %>
   </div>
-
   <div class="field">
     <%= form.label :genre %>
-    <%= form.text_field :genre %>
+    <%#= form.text_field :genre %>
+    <%@genres.each do |elem| %>
+      <%= form.label elem.name %>
+      <%= form.check_box :genre, {multiple: true}, elem.id, nil  %>
+    <% end %>
   </div>
-
   <div class="field">
     <%= form.label :location %>
     <%= form.text_field :location %>
   </div>
-
   <div class="field">
     <%= form.label :photourl %>
     <%= form.text_field :photourl %>
   </div>
-
   <div class="actions">
     <%= form.submit %>
   </div>
