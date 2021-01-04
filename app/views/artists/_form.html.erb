@@ -14,6 +14,11 @@
     <%= form.text_field :name %>
   </div>
   <div class="field">
+    <%= form.label :spotify_artist_id %>
+    <i>Hacer un buscador con spotify API</i>
+    <%= form.text_field :spotify_artist_id %>
+  </div>
+  <div class="field">
     <%= form.label :genre %>
     <%#= form.text_field :genre %>
     <%@genres.each do |elem| %>
@@ -22,8 +27,10 @@
     <% end %>
   </div>
   <div class="field">
-    <%= form.label :location %>
-    <%= form.text_field :location %>
+    <%= form.label :dpa_id %>
+    <%#= form.text_field :location %>
+    <%#= form.select :festival_id, options_from_collection_for_select(Festival.all.ordered, :id, :name),{include_blank: 'Select your festival'}, class: 'form-control' %>
+    <%= form.select :dpa_id, options_from_collection_for_select(@location, :id, :description),{include_blank: 'Select location'} %>
   </div>
   <div class="field">
     <%= form.label :photourl %>

@@ -20,7 +20,8 @@ class ArtistsController < ApplicationController
   # GET /artists/new
   def new
     @artist = Artist.new
-    @genres = Genre.all
+    @genres = Genre.all.ordered
+    @location = Dpa.where(hierarchy: 2).ordered
   end
 
   # GET /artists/1/edit
@@ -76,6 +77,6 @@ class ArtistsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def artist_params
-    params.require(:artist).permit(:name, :genre, :location, :photourl)
+    params.require(:artist).permit(:name, :genre, :dpa_id, :photourl, :spotify_artist_id)
   end
 end
