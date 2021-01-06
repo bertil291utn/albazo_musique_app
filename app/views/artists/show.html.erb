@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 <h3><%= @artist.name %></h3>
 <%= image_tag @artist.photourl, size:'150' %>
-<p><%= @artist.dpa.city_provincia%> </p>
+<p><%= @artist&.dpa&.city_provincia || ''%> </p>
 <%@artist_networks.each do |elem|  %>
   <%= link_to elem.social_link, target: :_blank do %>
     <%= image_tag elem.network.icon_url, size:'50'  %>
