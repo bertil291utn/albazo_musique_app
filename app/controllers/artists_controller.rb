@@ -32,9 +32,8 @@ class ArtistsController < ApplicationController
   # POST /artists.json
   def create
     @artist = Artist.new(artist_params)
-
     respond_to do |format|
-      if @artist.save
+      if @artist.save!
         format.html { redirect_to @artist, notice: "Artist was successfully created." }
         format.json { render :show, status: :created, location: @artist }
       else
@@ -76,7 +75,8 @@ class ArtistsController < ApplicationController
   end
 
   # Only allow a list of trusted parameters through.
+
   def artist_params
-    params.require(:artist).permit(:name, :genre, :dpa_id, :photourl, :spotify_artist_id)
+    params.require(:artist).permit(:name, :dpa_id, :photourl, :spotify_artist_id, genre_list: [])
   end
 end
