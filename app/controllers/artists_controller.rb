@@ -1,5 +1,6 @@
 class ArtistsController < ApplicationController
   before_action :set_artist, only: [:show, :edit, :update, :destroy]
+  before_action :set_artist_details, only: [:new, :edit]
 
   # GET /artists
   # GET /artists.json
@@ -20,12 +21,12 @@ class ArtistsController < ApplicationController
   # GET /artists/new
   def new
     @artist = Artist.new
-    @genres = Genre.all.ordered
-    @location = Dpa.where(hierarchy: 2).ordered
   end
 
   # GET /artists/1/edit
   def edit
+    @genre = @artist.genre_list
+    @city = @artist.dpa
   end
 
   # POST /artists
@@ -72,6 +73,11 @@ class ArtistsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_artist
     @artist = Artist.find(params[:id])
+  end
+
+  def set_artist_details
+    @genres = Genre.all.ordered
+    @location = Dpa.where(hierarchy: 2).ordered
   end
 
   # Only allow a list of trusted parameters through.

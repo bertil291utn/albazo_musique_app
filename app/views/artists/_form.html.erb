@@ -32,7 +32,7 @@
       <%= form.label :dpa_id %>
       <%#= form.text_field :location %>
       <%#= form.select :festival_id, options_from_collection_for_select(Festival.all.ordered, :id, :name),{include_blank: 'Select your festival'}, class: 'form-control' %>
-      <%= form.select :dpa_id, options_from_collection_for_select(@location, :id, :description),{include_blank: 'Select location'} %>
+      <%= form.select :dpa_id, options_from_collection_for_select(@location, :id, :description,@city&.id),{include_blank: 'Select location'} %>
     </div>
     <div class="field">
       <%= form.label :photourl %>
