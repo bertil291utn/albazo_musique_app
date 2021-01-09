@@ -1,5 +1,5 @@
 class Artist < ApplicationRecord
-  belongs_to :dpa, optional: true
+  belongs_to :location, class_name: "Dpa", foreign_key: :dpa_id, optional: true
   has_many :artist_genres, dependent: :destroy
   has_many :genres, through: :artist_genres
   has_many :tracks, dependent: :destroy
@@ -10,12 +10,14 @@ class Artist < ApplicationRecord
   has_many :credits_tracks, dependent: :destroy
 
   def genre_list
-    @genre_list
+    genres
   end
 
   def genre_list=(genre_list)
-    @genre_list = genre_list
-    self.genres = @genre_list.collect do |elem|
+    var_genre_list = genre_list.reject(&:empty?).empty?
+    return if var_genre_list.empty?
+
+    self.genres = var_genre_list.collect do |elem|
       Genre.find_or_create_by(id: elem.to_i)
     end
   end
