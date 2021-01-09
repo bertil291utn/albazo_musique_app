@@ -26,13 +26,14 @@ class ArtistsController < ApplicationController
   # GET /artists/1/edit
   def edit
     @genre = @artist.genre_list
-    @city = @artist.dpa
+    @city = @artist.location
   end
 
   # POST /artists
   # POST /artists.json
   def create
     @artist = Artist.new(artist_params)
+    puts artist_params
     respond_to do |format|
       if @artist.save!
         format.html { redirect_to @artist, notice: "Artist was successfully created." }
