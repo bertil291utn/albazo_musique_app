@@ -19,26 +19,18 @@
     <%= form.text_field :spotify_artist_id %>
   </div>
   <div class="field">
-    <%#= form.label :genre %>
-    <%#= form.text_field :genre %>
-    <%#= form.fields_for :artist_genre do |atrack_form| %>
-      <%@genres.each do |elem| %>
-        <%= form.label :genre_list, elem.name %>
-        <%= form.check_box :genre_list, {multiple: true}, elem.id, nil  %>
-      <% end %>
-      <%# end %>
-    </div>
-    <div class="field">
-      <%= form.label :dpa_id %>
-      <%#= form.text_field :location %>
-      <%#= form.select :festival_id, options_from_collection_for_select(Festival.all.ordered, :id, :name),{include_blank: 'Select your festival'}, class: 'form-control' %>
-      <%= form.select :dpa_id, options_from_collection_for_select(@location, :id, :description,@city&.id),{include_blank: 'Select location'} %>
-    </div>
-    <div class="field">
-      <%= form.label :photourl %>
-      <%= form.text_field :photourl %>
-    </div>
-    <div class="actions">
-      <%= form.submit %>
-    </div>
-  <% end %>
+    <p>Genres: </p>
+    <%= form.collection_check_boxes(:genre_list, @genres, :id, :name, { checked: genre_edit(@genre)  }) %>
+  </div>
+  <div class="field">
+    <%= form.label :dpa_id %>
+    <%= form.select :dpa_id, options_from_collection_for_select(@location, :id, :description, @city&.id),{include_blank: 'Select location'} %>
+  </div>
+  <div class="field">
+    <%= form.label :photourl %>
+    <%= form.text_field :photourl %>
+  </div>
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
