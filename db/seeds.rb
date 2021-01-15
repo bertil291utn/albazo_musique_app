@@ -36,31 +36,38 @@ end
 networks = [
   {
     name: "facebook",
-    url: "https://img.icons8.com/doodle/50/000000/facebook-new.png",
+    icon_url: "https://img.icons8.com/doodle/50/000000/facebook-new.png",
+    url: "https://www.facebook.com/",
   },
   {
     name: "instagram",
-    url: "https://img.icons8.com/doodle/50/000000/instagram-new.png",
+    icon_url: "https://img.icons8.com/doodle/50/000000/instagram-new.png",
+    url: "https://www.instagram.com/",
   },
   {
     name: "spotify",
-    url: "https://img.icons8.com/doodle/48/000000/spotify.png",
+    icon_url: "https://img.icons8.com/doodle/48/000000/spotify.png",
+    url: "https://open.spotify.com/user/",
   },
   {
     name: "soundcloud",
-    url: "https://img.icons8.com/doodle/50/000000/soundcloud.png",
+    icon_url: "https://img.icons8.com/doodle/50/000000/soundcloud.png",
+    url: "https://www.soundcloud.com/",
   },
   {
     name: "youtube",
-    url: "https://img.icons8.com/doodle/50/000000/youtube.png",
+    icon_url: "https://img.icons8.com/doodle/50/000000/youtube.png",
+    url: "https://www.youtube.com/",
   },
   {
     name: "deezer",
-    url: "https://img.icons8.com/color/48/000000/deezer.png",
+    icon_url: "https://img.icons8.com/color/48/000000/deezer.png",
+    url: "https://www.deezer.com/",
   },
   {
     name: "apple",
-    url: "https://img.icons8.com/doodle/48/000000/apple-music.png",
+    icon_url: "https://img.icons8.com/doodle/48/000000/apple-music.png",
+    url: "https://music.apple.com/us/artist/",
   },
 ]
 # ROL
@@ -72,7 +79,7 @@ rol.each do |elem|
 end
 
 networks.each do |elem|
-  Network.create! name: elem[:name], icon_url: elem[:url]
+  Network.create! name: elem[:name], icon_url: elem[:icon_url], URL: elem[:url]
 end
 
 tracks_id = %w[5Dqik1P9toCJTLj5rEm78s 5LYJ631w9ps5h9tdvac7yP 2Ch7LmS7r2Gy2kc64wv3Bz 0NdTUS4UiNYCNn5FgVqKQY]
@@ -82,7 +89,7 @@ params = [
   {
     name: Faker::Music.band,
     photourl: Faker::Avatar.image,
-    dpa: Dpa.where(hierarchy: 2).first,
+    location: Dpa.where(hierarchy: 2).first,
     spotify_artist_id: artists_id.sample,
     tracks_attributes: [
       {
@@ -91,7 +98,7 @@ params = [
         priority: rand(1..5),
         album_bg_url: Faker::LoremFlickr.image,
         album_name: Faker::Music::Phish.song,
-        dpa: dpaTable.shuffle!.pop,
+        recorded_at: dpaTable.shuffle!.pop,
       },
       {
         name: Faker::Music::Phish.song,
@@ -99,14 +106,14 @@ params = [
         priority: rand(1..5),
         album_bg_url: Faker::LoremFlickr.image,
         album_name: Faker::Music::Phish.song,
-        dpa: dpaTable.shuffle!.pop,
+        recorded_at: dpaTable.shuffle!.pop,
       },
     ],
   },
   {
     name: Faker::Music.band,
     photourl: Faker::Avatar.image,
-    dpa: Dpa.where(hierarchy: 2).last,
+    location: Dpa.where(hierarchy: 2).last,
     spotify_artist_id: artists_id.sample,
     tracks_attributes: [
       {
@@ -115,7 +122,7 @@ params = [
         priority: rand(1..5),
         album_bg_url: Faker::LoremFlickr.image,
         album_name: Faker::Music::Phish.song,
-        dpa: dpaTable.shuffle!.pop,
+        recorded_at: dpaTable.shuffle!.pop,
       },
       {
         name: Faker::Music::Phish.song,
@@ -123,7 +130,7 @@ params = [
         priority: rand(1..5),
         album_bg_url: Faker::LoremFlickr.image,
         album_name: Faker::Music::Phish.song,
-        dpa: dpaTable.shuffle!.pop,
+        recorded_at: dpaTable.shuffle!.pop,
       },
     ],
   },
@@ -139,7 +146,7 @@ params.each do |elem|
   end
 
   rand(2..4).times do
-    artist.artist_networks.create! social_link: "https://www.facebook.com/", user_name: Faker::Internet.user_name, network: networkTable.shuffle!.pop
+    artist.artist_networks.create! user_name: Faker::Internet.user_name, network: networkTable.shuffle!.pop
   end
 end
 
