@@ -27,6 +27,13 @@
     <%= form.select :dpa_id, options_from_collection_for_select(@location, :id, :description, @city&.id),{include_blank: 'Select location'} %>
   </div>
   <div class="field">
+    <p>Networks</p>
+    <%= form.fields_for :mynetworks do |anForm| %>
+      <%= anForm.text_field :user_name %>
+      <%= anForm.select :network_id, options_from_collection_for_select(@networks, :id, :name, @network&.id),{include_blank: 'Select network'} %>
+    <% end %>
+  </div>
+  <div class="field">
     <%= form.label :photourl %>
     <%= form.text_field :photourl %>
   </div>

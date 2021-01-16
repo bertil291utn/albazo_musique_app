@@ -6,6 +6,7 @@ class ArtistsController < ApplicationController
   # GET /artists.json
   def index
     @artists = Genre.display_artists(session[:generos]).flatten
+    # if donest exists in session ask in the db from this user generes selection
     # from a given genres array (DB, session) find all genres and dsiplay all artists from those genres
     # Add flatten at the end to break two dimnensions array
     #  = Artist.includes :tracks
@@ -15,18 +16,20 @@ class ArtistsController < ApplicationController
   # GET /artists/1.json
   def show
     # @tracks = @artist.tracks
-    @artist_networks = @artist.artist_networks.includes(:network)
+    @artist_networks = @artist.mynetworks.includes(:network)
   end
 
   # GET /artists/new
   def new
     @artist = Artist.new
+    2.times { @artist.mynetworks.build }
   end
 
   # GET /artists/1/edit
   def edit
     @genre = @artist.genre_list
     @city = @artist.location
+    # @network = @artist.networks
   end
 
   # POST /artists
@@ -78,12 +81,14 @@ class ArtistsController < ApplicationController
 
   def set_artist_details
     @genres = Genre.all.ordered
+    @networks = Network.all.ordered
     @location = Dpa.where(hierarchy: 2).ordered
   end
 
   # Only allow a list of trusted parameters through.
 
   def artist_params
-    params.require(:artist).permit(:name, :dpa_id, :photourl, :spotify_artist_id, genre_list: [])
+    params.require(:artist).permit(:name, :dpa_id, :photourl, :spotify_artist_id, genre_list: [],
+                                                                                  mynetworks_attributes: [[:_destroy] + ArtistNetwork.column_names.map(&:to_sym)])
   end
 end
