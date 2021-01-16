@@ -1,13 +1,14 @@
 <p id="notice"><%= notice %></p>
 <h3><%= @artist.name %></h3>
 <%= image_tag @artist.photourl, size:'150' %>
-<p><%= @artist&.location&.city_provincia || ''%> </p>
+<%= @artist&.location&.city_provincia || ''%>
 <%@artist_networks.each do |elem|  %>
-  <%= link_to elem.social_link, target: :_blank do %>
+  <%= link_to slug_user(elem), target: :_blank do %>
     <%= image_tag elem.network.icon_url, size:'50'  %>
+    <span>  @<%= elem.user_name %>  </span>
   <% end %>
-  <p><%= elem.network.name %></p>
 <% end %>
+<br>
 <%
 =begin  %>
 <p>

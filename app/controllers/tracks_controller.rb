@@ -5,7 +5,7 @@ class TracksController < ApplicationController
   # GET /tracks
   # GET /tracks.json
   def index
-    # @artist_networks = @artist.artist_networks.includes(:network)
+    # @artist_networks = @artist.mynetworks.includes(:network)
     @tracks = @artist.tracks
   end
 
