@@ -1,0 +1,2 @@
+<%= f.text_field :user_name %>
+<%= f.select :network_id, options_from_collection_for_select(@networks, :id, :name, @network&.id),{include_blank: 'Select network'} %>

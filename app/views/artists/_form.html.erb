@@ -29,9 +29,9 @@
   <div class="field">
     <p>Networks</p>
     <%= form.fields_for :mynetworks do |anForm| %>
-      <%= anForm.text_field :user_name %>
-      <%= anForm.select :network_id, options_from_collection_for_select(@networks, :id, :name, @network&.id),{include_blank: 'Select network'} %>
+      <%= render "mynetwork_fields", :f => anForm %>
     <% end %>
+    <p><%= link_to_add_fields "Add social network", form, :mynetworks %></p>
   </div>
   <div class="field">
     <%= form.label :photourl %>

@@ -87,7 +87,13 @@ class ArtistsController < ApplicationController
   # Only allow a list of trusted parameters through.
 
   def artist_params
-    params.require(:artist).permit(:name, :dpa_id, :photourl, :spotify_artist_id, genre_list: [],
-                                                                                  mynetworks_attributes: [[:_destroy] + ArtistNetwork.column_names.map(&:to_sym)])
+    params.require(:artist).permit(
+      :name,
+      :dpa_id,
+      :photourl,
+      :spotify_artist_id,
+      genre_list: [],
+      mynetworks_attributes: [[:_destroy] + ArtistNetwork.column_names.map(&:to_sym)]
+    )
   end
 end
