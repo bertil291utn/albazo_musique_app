@@ -22,14 +22,14 @@ class ArtistsController < ApplicationController
   # GET /artists/new
   def new
     @artist = Artist.new
-    2.times { @artist.mynetworks.build }
+    @artist.mynetworks.new
   end
 
   # GET /artists/1/edit
   def edit
     @genre = @artist.genre_list
     @city = @artist.location
-    # @network = @artist.networks
+    @network = @artist.mynetworks
   end
 
   # POST /artists
@@ -93,7 +93,7 @@ class ArtistsController < ApplicationController
       :photourl,
       :spotify_artist_id,
       genre_list: [],
-      mynetworks_attributes: [[:_destroy] + ArtistNetwork.column_names.map(&:to_sym)]
+      mynetworks_attributes: [[:_destroy] + ArtistNetwork.column_names.map(&:to_sym)],
     )
   end
 end

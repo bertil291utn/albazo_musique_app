@@ -1,2 +1,10 @@
-<%= f.text_field :user_name %>
-<%= f.select :network_id, options_from_collection_for_select(@networks, :id, :name, @network&.id),{include_blank: 'Select network'} %>
+<div class="artist-network-fields">
+  <div class="form-group">
+    <%= form.hidden_field :_destroy %>
+    <%= form.text_field :user_name %>
+    <%= form.select :network_id, options_from_collection_for_select(@networks, :id, :name, network_edit(@network,index)),{include_blank: 'Select network'} %>
+    <small>
+      <%= link_to "Remove", "#", data:{action:"click->artist-network-form#remove_association"} %>
+    </small>
+  </div>
+</div>

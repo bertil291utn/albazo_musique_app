@@ -7,10 +7,17 @@ import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
+import { Application } from 'stimulus';
+import { definitionsFromContext } from 'stimulus/webpack-helpers';
+
 
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+const application = Application.start();
+const context = require.context('../controllers', true, /\.js$/)
+application.load(definitionsFromContext(context));
 
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)
@@ -19,10 +26,3 @@ ActiveStorage.start()
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
 
-function add_fields(link, association, content) {
-  var new_id = new Date().getTime();
-  var regexp = new RegExp("new_" + association, "g")
-  $(link).up().insert({
-    before: content.replace(regexp, new_id)
-  });
-}

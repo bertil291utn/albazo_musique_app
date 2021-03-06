@@ -28,10 +28,21 @@
   </div>
   <div class="field">
     <p>Networks</p>
-    <%= form.fields_for :mynetworks do |anForm| %>
-      <%= render "mynetwork_fields", :f => anForm %>
-    <% end %>
-    <p><%= link_to_add_fields "Add social network", form, :mynetworks %></p>
+    <div data-controller="artist-network-form">
+      <%# Create a new artistnetwork %>
+      <template data-target="artist-network-form.template">
+        <%= form.fields_for :mynetworks, ArtistNetwork.new,child_index: 'TEMPLATE_RECORD' do |anForm| %>
+          <%= render partial: 'mynetwork_fields', locals: { form: anForm, index: anForm.index} %>
+        <% end %>
+      </template>
+      <%# Display an artistnetwork %>
+      <%= form.fields_for :mynetworks do |anForm| %>
+        <%= render partial: 'mynetwork_fields', locals: { form: anForm, index: anForm.index}  %>
+      <% end %>
+      <div data-target="artist-network-form.add_artist_network">
+        <%= link_to "Anadir network", "#", data:{action:"click->artist-network-form#add_association"} %>
+      </div>
+    </div>
   </div>
   <div class="field">
     <%= form.label :photourl %>
