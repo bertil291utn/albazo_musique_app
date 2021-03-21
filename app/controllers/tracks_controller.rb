@@ -21,6 +21,7 @@ class TracksController < ApplicationController
 
   # GET /tracks/1/edit
   def edit
+    @location = @artist.tracks.find(params[:id]).recorded_in
   end
 
   # POST /tracks
@@ -30,7 +31,7 @@ class TracksController < ApplicationController
 
     respond_to do |format|
       if @track.save
-        format.html { redirect_to @track, notice: "Track was successfully created." }
+        format.html { redirect_to artist_tracks_url(params[:artist_id]), notice: "Track was successfully created." }
         format.json { render :show, status: :created, location: @track }
       else
         format.html { render :new }
@@ -72,10 +73,16 @@ class TracksController < ApplicationController
 
   def set_artist
     @artist = Artist.find(params[:artist_id])
+    @cities = Dpa.where(hierarchy: 2).ordered
+    @tracksOrder = []
+    10.times { |elem| @tracksOrder.push((elem + 1).to_s) }
   end
 
   # Only allow a list of trusted parameters through.
   def track_params
-    params.require(:track).permit(:name, :spotify_track_id, :track_url, :priority, :abum_bg_url, :artist_id)
+    params.permit(:name,
+                  :album_name,
+                  :recorded_in,
+                  :track_url, :priority, :album_bg_url, :artist_id)
   end
 end

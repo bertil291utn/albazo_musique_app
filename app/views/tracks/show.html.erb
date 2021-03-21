@@ -1,34 +1,27 @@
 <p id="notice"><%= notice %></p>
-
 <p>
   <strong>Name:</strong>
   <%= @track.name %>
 </p>
-
 <p>
   <strong>Spotify track:</strong>
-  <%= @track.spotify_track_id %>
+  <%#= @track.spotify_track_id %>
 </p>
-
 <p>
   <strong>Track url:</strong>
   <%= @track.track_url %>
 </p>
-
 <p>
   <strong>Priority:</strong>
   <%= @track.priority %>
 </p>
-
 <p>
   <strong>Abum bg url:</strong>
-  <%= @track.abum_bg_url %>
+  <%= @track.album_bg_url %>
 </p>
-
 <p>
   <strong>Artist:</strong>
   <%= @track.artist_id %>
 </p>
-
-<%= link_to 'Edit', edit_track_path(@track) %> |
-<%= link_to 'Back', tracks_path %>
+<%#= link_to 'Edit', edit_track_path(@track) %> |
+<%#= link_to 'Back', tracks_path %>

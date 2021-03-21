@@ -91,7 +91,7 @@ class ArtistsController < ApplicationController
       :name,
       :dpa_id,
       :photourl,
-      :spotify_artist_id,
+      # :spotify_artist_id,
       genre_list: [],
       mynetworks_attributes: [[:_destroy] + ArtistNetwork.column_names.map(&:to_sym)],
     )
